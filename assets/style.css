@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1d;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    flex-direction: column;
+  }
+
+  .container {
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  h1 {
+    color: #f5a623;
+    margin-bottom: 20px;
+  }
+
+  .player {
+    margin: 10px 0;
+  }
+
+  .result {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 20px 0;
+  }
+
+  .trigger-btn {
+    background-color: #e63946;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .trigger-btn:hover {
+    background-color: #d62828;
+  }
+
+  .trigger-btn.disabled {
+    background-color: #555;
+    cursor: not-allowed;
+  }
+
+  .instructions {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #c5c6c7;
+  }
+
+.player-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.player-image {
+  width: 90px; /* Tamanho da imagem */
+  height: 90px; /* Tamanho da imagem */
+  border-radius: 50%; /* Deixa a imagem circular */
+  margin-right: 10px; /* Espaçamento entre a imagem e o nome */
+}
+
+.player h3 {
+  margin: 0; /* Remove a margem padrão do título */
+}
+
+.trigger-btn {
+  margin-top: 10px;
+}
+
+.result {
+  margin-top: 15px;
+  margin-bottom: 80px;
+}
