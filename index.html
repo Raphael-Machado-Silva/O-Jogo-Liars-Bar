@@ -5,10 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bar da Mentira - Revolver</title>
   <link rel="stylesheet" href="assets/style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 </head>
 <body onload="generatePlayerInputs()">
   <div class="container">
-    <h1>Bar da Mentira - Simulador de Revolver</h1>
+    <h1>Bar da Mentira <i class="fas fa-gun"></i>
+    </h1>
     <p class="text">Escolha o número de jogadores e clique para começar.</p>
 
     <div id="setup">
@@ -19,8 +22,8 @@
     </div>
 
     <div id="game" style="display: none;">
-      <div id="players"></div>
       <p class="instructions">Clique no botão de cada jogador para puxar o gatilho.</p>
+      <div id="players"></div>
       <button class="restart-btn" onclick="restartGame()">Reiniciar Jogo</button>
     </div>
   </div>

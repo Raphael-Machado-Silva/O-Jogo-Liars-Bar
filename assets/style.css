@@ -1,23 +1,35 @@
-body {
-    font-family: Arial, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Permanent+Marker&display=swap');
+
+  body {
+    font-family: "Inter", serif;
     background-color: #1a1a1d;
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100vh; /* Ajuste a altura para 100% da altura da janela */
     margin: 0;
     flex-direction: column;
   }
 
   .container {
-    margin-top: 50px;
     text-align: center;
+    margin-top: 100px;
+    height: 100%;
+    /* Remova a margem superior para centralizar a container */
   }
 
   h1 {
     color: #f5a623;
     margin-bottom: 20px;
+    font-family: "Anton SC", serif;
+    letter-spacing: 2px;
+    font-size: 35px;
+    text-shadow: 1px 0px 0px #5c3d0c;
+  }
+
+  .text{
+    padding: 0px 8px;
   }
 
   .player {
@@ -33,12 +45,13 @@ body {
   .trigger-btn {
     background-color: #e63946;
     border: none;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 30px;
+    font-size: 18px;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 30px;
   }
 
   .trigger-btn:hover {
@@ -48,6 +61,24 @@ body {
   .trigger-btn.disabled {
     background-color: #555;
     cursor: not-allowed;
+  }
+
+  .restart-btn{
+    background-color: #d6901f;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "Inter";
+    color: black;
+    border-radius: 152px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 30px 30px 40px 30px;
+  }
+
+  .restart-btn:hover{
+    background-color: #F5A623;
   }
 
   .instructions {
@@ -74,11 +105,66 @@ body {
   margin: 0; /* Remove a margem padrão do título */
 }
 
-.trigger-btn {
-  margin-top: 10px;
-}
 
 .result {
   margin-top: 15px;
   margin-bottom: 80px;
+}
+
+/* INPUTS E SELECT*/
+
+input[type="number"] {
+  background-color: white;
+  border: none;
+  padding: 10px 0px 10px 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 5px;
+  outline: none;
+}
+
+
+input[type="text"] {
+  background-color: black; /* Exemplo de cor de fundo */
+  border: 2px solid #D62828; /* Exemplo de borda */
+  color: white;
+  padding: 12px 12px 12px 15px; /* Exemplo de espaçamento interno */
+  border-radius: 40px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+  margin: 40px 15px 0px 10px;
+  outline: none;
+}
+
+
+select{
+  background-color: #F5A623;
+  border-radius: 40px;
+  border: 2px solid black;
+  text-transform: capitalize;
+  padding: 10px 10px 10px 15px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+option{
+  background-color: #F5A623;
+  color: black;
+  font-size: 16px;
+}
+
+.instructions{
+  margin-top: -10px;
+  margin-bottom: 50px;
+}
+
+h3{
+  color: #F5A623;
+  font-size: 30px;
+}
+
+.result{
+  color: rgb(1, 155, 1);
+  margin-bottom: 100px;
 }
