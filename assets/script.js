@@ -35,6 +35,13 @@ function generatePlayerInputs() {
       imageInput.appendChild(option);
     });
 
+    // Mantém a seleção anterior, se existir
+    const savedPlayer = players.find(p => p.id === i);
+    if (savedPlayer) {
+      nameInput.value = savedPlayer.name;
+      imageInput.value = savedPlayer.image.replace('img/', '').replace('.png', '');
+    }
+
     inputContainer.appendChild(nameInput);
     inputContainer.appendChild(imageInput);
 
@@ -145,8 +152,23 @@ function startGame() {
   document.getElementById('game').style.display = 'block';
 }
 
-// Função para mostrar uma imagem aleatória por 3 segundos
-function showRandomCard(countdownOverlay) {
+// Função para mostrar uma imagem aleatória com fundo escuro por 3 segundos
+function showRandomCard(countdownOverlay = null) {
+  // Fundo semitransparente
+  const darkOverlay = document.createElement('div');
+  darkOverlay.id = 'dark-overlay';
+  darkOverlay.style.position = 'fixed';
+  darkOverlay.style.top = 0;
+  darkOverlay.style.left = 0;
+  darkOverlay.style.width = '100%';
+  darkOverlay.style.height = '100%';
+  darkOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+  darkOverlay.style.display = 'flex';
+  darkOverlay.style.justifyContent = 'center';
+  darkOverlay.style.alignItems = 'center';
+  darkOverlay.style.zIndex = 1001;
+  document.body.appendChild(darkOverlay);
+
   // Sorteia uma carta aleatória
   const randomCard = cardValues[Math.floor(Math.random() * cardValues.length)];
 
@@ -154,24 +176,17 @@ function showRandomCard(countdownOverlay) {
   const cardImage = document.createElement('img');
   cardImage.id = 'card';
   cardImage.src = `img/${randomCard}.png`; // Caminho para a imagem
-  cardImage.style.position = 'fixed';
-  cardImage.style.top = '50%';
-  cardImage.style.left = '50%';
-  cardImage.style.transform = 'translate(-50%, -50%)';
   cardImage.style.width = '150px'; // Ajuste o tamanho conforme necessário
-  cardImage.style.zIndex = 1001;
+  darkOverlay.appendChild(cardImage);
 
-  // Exibe a imagem após a contagem ter terminado
-  document.body.appendChild(cardImage);
-
-  // Remove a tela preta após a carta aparecer
-  setTimeout(() => {
+  // Remove a tela preta inicial, se existir
+  if (countdownOverlay) {
     document.body.removeChild(countdownOverlay);
-  }, 3000);
+  }
 
-  // Duração da exibição da carta (3 segundos)
+  // Remove o fundo e a imagem após 3 segundos
   setTimeout(() => {
-    document.body.removeChild(cardImage);
+    document.body.removeChild(darkOverlay);
   }, 3000);
 }
 
@@ -209,11 +224,16 @@ function pullTrigger(playerId) {
       player.currentPosition++;
     }
   }
+
+  // Exibe uma nova carta após 2 segundos
+  setTimeout(() => {
+    showRandomCard();
+  }, 2000);
 }
 
 // Função para reiniciar o jogo
 function restartGame() {
-  // Resetar o estado dos jogadores
+  // Apenas reseta o estado dos jogadores (mantém nomes e imagens)
   players.forEach(player => {
     player.drum = Array(6).fill(false);
     player.currentPosition = 0;
@@ -228,5 +248,5 @@ function restartGame() {
   document.querySelector('.text').textContent = 'Escolha o número de jogadores e clique em iniciar para jogar';
   document.getElementById('setup').style.display = 'block';
   document.getElementById('game').style.display = 'none';
-  document.getElementById('players').innerHTML = ''; // Limpa a área de exibição dos jogadores
+  generatePlayerInputs(); // Mantém os inputs atualizados com os jogadores existentes
 }
