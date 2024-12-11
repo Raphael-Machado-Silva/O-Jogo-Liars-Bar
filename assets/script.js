@@ -55,8 +55,8 @@ window.onload = generatePlayerInputs;
 // Função para iniciar o jogo
 function startGame() {
   const numPlayers = parseInt(document.getElementById('numPlayers').value);
-  if (numPlayers < 4 || numPlayers > 6) {
-    alert('Por favor, escolha entre 4 e 6 jogadores.');
+  if (numPlayers < 3 || numPlayers > 6) {
+    alert('Por favor, escolha entre 3 e 6 jogadores.');
     return;
   }
   document.querySelector('.text').textContent = 'QUE OS JOGOS COMEÇEM!';
