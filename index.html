@@ -14,9 +14,11 @@
     <p class="text">Escolha o número de jogadores e clique para começar.</p>
 
     <div id="setup">
-      <label for="numPlayers">Número de Jogadores (3-6): </label>
-      <input type="number" id="numPlayers" min="3" max="6" value="3" onchange="generatePlayerInputs()">
-
+      <div class="jogadores_qnt">
+       <label for="numPlayers">Número de Jogadores (3-6): </label>
+        <input type="number" id="numPlayers" min="3" max="6" value="3" onchange="generatePlayerInputs()"> 
+      </div>
+      
       <!-- Opção de incluir ou excluir o Valete -->
       <div class="checkbox-wrapper-8">
         <label for="cb3-8" class="checkbox-label">Incluir Valete (J):</label>

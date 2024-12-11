@@ -1,23 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Permanent+Marker&display=swap');
 
-  body {
-    font-family: "Inter", serif;
-    background-color: #1a1a1d;
-    color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Ajuste a altura para 100% da altura da janela */
-    margin: 0;
-    flex-direction: column;
-  }
+body {
+  font-family: "Inter", serif;
+  background-color: #1a1a1d;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa 100% da altura da janela */
+  margin: 0;
+  flex-direction: column;
+  overflow-y: auto; /* Permite rolagem se necessário */
+}
 
-  .container {
-    text-align: center;
-    margin-top: 80px;
-    height: 100%;
-    /* Remova a margem superior para centralizar a container */
-  }
+.container {
+  text-align: center;
+  margin-top: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Não há necessidade de height: 100% aqui */
+  /* Pode adicionar margin se quiser controlar o espaçamento */
+}
+
 
   h1 {
     color: #f5a623;
@@ -40,6 +46,17 @@
     font-size: 24px;
     font-weight: bold;
     margin: 20px 0;
+  }
+
+  #game{
+    display: none;
+  }
+
+  #setup{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   .trigger-btn {
@@ -81,6 +98,24 @@
     background-color: #F5A623;
   }
 
+  .points-label{
+    font-size: 22px;
+    margin-left: 20px;
+  }
+
+  .players-points-input{
+    margin-left: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding: 7px 0px 5px 12px;
+    border-radius: 500px;
+    outline: none;
+    border: none;
+  }
+
   .instructions {
     margin-top: 30px;
     font-size: 14px;
@@ -113,10 +148,10 @@
 
 /* INPUTS E SELECT*/
 
-input[type="number"] {
+#numPlayers {
   background-color: white;
   border: none;
-  padding: 10px 10px 10px 10px;
+  padding: 8px 5px 8px 8px;
   border-radius: 5px;
   text-align: center;
   font-size: 20px;
@@ -171,6 +206,40 @@ h4{
 .result{
   color: rgb(1, 155, 1);
   margin-bottom: 100px;
+}
+
+@media (max-width: 600px){
+  .player-input-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens "quebrem" para a linha seguinte */
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin-bottom: 20px;
+  }
+  .player-input-container > *:nth-child(1){
+    width: 60%;
+    margin-bottom: 10px;
+  }
+  .player-input-container > *:nth-child(2){
+    width: 30%;
+  }
+
+  .player-input-container > *:nth-child(3){
+    width: 30px;
+  }
+  .player-input-container > *:nth-child(4){
+    margin-left: 15px;
+    width: 45px;
+  }
+
+  .player-input-container > *:nth-child(2),
+  .player-input-container > *:nth-child(3),
+  .player-input-container > *:nth-child(4) {
+
+     /* Os outros dois itens ocupam 50% da largura cada */
+  }
+  
 }
 
   .checkbox-wrapper-8{
@@ -286,4 +355,3 @@ h4{
   .checkbox-wrapper-8 .tgl-skewed:checked + .tgl-btn:active:after {
     left: 10%;
   }
-

@@ -5,6 +5,7 @@ const imageNames = ['porco', 'touro', 'gato', 'cachorro', 'leão', 'pato'];
 
 // Lista de cartas possíveis
 let cardValues = ['Q', 'K', 'J', 'A'];
+let pointsEditable = true; // Controla se os pontos podem ser alterados
 
 // Função para ajustar a lista de cartas com base no checkbox
 function toggleJack() {
@@ -31,7 +32,7 @@ function calculateCardsPerPlayer() {
   const numPlayers = parseInt(document.getElementById('numPlayers').value); // Número de jogadores
   const includeJack = document.getElementById('cb3-8').checked; // Verifica se o Valete está incluído
   let totalCardValues = includeJack ? cardValues.length : cardValues.filter(val => val !== 'J').length;
-    
+
   // Sempre adiciona 2 Jokers ao total de cartas
   totalCardValues = (cardValues.length * 6) + 2; // Adiciona os 2 Jokers sempre
   // Calcula o número de cartas por jogador
@@ -70,25 +71,31 @@ function generatePlayerInputs() {
       imageInput.appendChild(option);
     });
 
-    // Mantém a seleção anterior, se existir
-    const savedPlayer = players.find(p => p.id === i);
-    if (savedPlayer) {
-      nameInput.value = savedPlayer.name;
-      imageInput.value = savedPlayer.image.replace('img/', '').replace('.png', '');
-    }
+    // Adiciona o campo de entrada para pontos
+    const pointsInput = document.createElement('input');
+    pointsInput.type = 'number';
+    pointsInput.id = `player-points-${i}`;
+    pointsInput.value = 0; // Define valor inicial de pontos como 0
+    pointsInput.min = 0; // Permite apenas números positivos
+    pointsInput.className = 'players-points-input';
+
+    // Adiciona a etiqueta Pts: antes do input de pontos
+    const pointsLabel = document.createElement('span');
+    pointsLabel.textContent = 'Pts:';
+    pointsLabel.className = 'points-label';
 
     inputContainer.appendChild(nameInput);
     inputContainer.appendChild(imageInput);
+    inputContainer.appendChild(pointsLabel);
+    inputContainer.appendChild(pointsInput);
+
 
     playerInputsContainer.appendChild(inputContainer);
   }
 
-  // Atualiza o número de cartas a ser distribuído
+  // Exibe o número de cartas assim que a página for carregada ou atualizada
   calculateCardsPerPlayer();
 }
-
-// Chama a função para exibir os campos quando a página é carregada
-window.onload = generatePlayerInputs;
 
 // Função para iniciar o jogo
 function startGame() {
@@ -155,7 +162,8 @@ function startGame() {
       image: `img/${imageName}.png`, // Concatena com a extensão .png
       drum: Array(6).fill(false),
       currentPosition: 0,
-      alive: true
+      alive: true,
+      points: parseInt(document.getElementById(`player-points-${i}`).value) // Pega os pontos antes de iniciar
     });
   }
 
@@ -174,10 +182,13 @@ function startGame() {
     playerDiv.className = 'player';
     playerDiv.id = `player-${player.id}`;
 
+    // Verifica qual jogador tem a maior pontuação e coloca a coroa
+    const isKing = player.points === Math.max(...players.map(p => p.points)) && player.points > 0;
+
     playerDiv.innerHTML = `
       <div class="player-info">
         <img src="${player.image}" alt="Foto do Jogador ${player.id}" class="player-image">
-        <h3>${player.name}</h3>
+        <h3>${player.name} ${isKing ? ' <i class="fa-solid fa-chess-king"></i>' : ''}</h3>
       </div>
       <button class="trigger-btn" id="button-player-${player.id}" onclick="pullTrigger(${player.id})">Puxar o Gatilho</button>
       <div class="result" id="result-player-${player.id}">Pronto para disparar!</div>
@@ -228,7 +239,6 @@ function showRandomCard(countdownOverlay = null) {
   }, 3000);
 }
 
-
 // Função para simular o disparo do gatilho
 function pullTrigger(playerId) {
   const player = players.find(p => p.id === playerId);
@@ -272,7 +282,13 @@ function pullTrigger(playerId) {
 
 // Função para reiniciar o jogo
 function restartGame() {
-  // Apenas reseta o estado dos jogadores (mantém nomes e imagens)
+  const numPlayers = parseInt(document.getElementById('numPlayers').value);
+  if (numPlayers < 3 || numPlayers > 6) {
+    alert('Por favor, escolha entre 3 e 6 jogadores.');
+    return;
+  }
+
+  // Reseta o estado dos jogadores, mas mantém nome e imagem
   players.forEach(player => {
     player.drum = Array(6).fill(false);
     player.currentPosition = 0;
@@ -283,12 +299,8 @@ function restartGame() {
     player.drum[bulletPosition] = true;
   });
 
-  // Atualiza o texto do <p> para "Escolha o número de jogadores e clique para começar"
-  document.querySelector('.text').textContent = 'Escolha o número de jogadores e clique em iniciar para jogar';
   document.getElementById('setup').style.display = 'block';
   document.getElementById('game').style.display = 'none';
-  generatePlayerInputs(); // Mantém os inputs atualizados com os jogadores existentes
+  
+  document.querySelector('.text').textContent = 'Escolha o número de jogadores e clique em iniciar para jogar';
 }
-
-
-
