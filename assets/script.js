@@ -4,7 +4,42 @@ let players = [];
 const imageNames = ['porco', 'touro', 'gato', 'cachorro', 'leão', 'pato'];
 
 // Lista de cartas possíveis
-const cardValues = ['Q', 'K', 'J', 'A'];
+let cardValues = ['Q', 'K', 'J', 'A'];
+
+// Função para ajustar a lista de cartas com base no checkbox
+function toggleJack() {
+  const includeJack = document.getElementById('cb3-8').checked;
+
+  if (includeJack) {
+    // Adiciona o 'J' ao array apenas se ainda não estiver presente
+    if (!cardValues.includes('J')) {
+      cardValues.push('J');
+    }
+  } else {
+    // Remove todas as ocorrências de 'J' do array
+    cardValues = cardValues.filter(card => card !== 'J');
+  }
+
+  console.log('Cartas disponíveis:', cardValues); // Para depuração
+  
+  // Atualiza o número de cartas por jogador sempre que a checkbox mudar
+  calculateCardsPerPlayer();
+}
+
+// Função para calcular o número de cartas por jogador e exibir a quantidade
+function calculateCardsPerPlayer() {
+  const numPlayers = parseInt(document.getElementById('numPlayers').value); // Número de jogadores
+  const includeJack = document.getElementById('cb3-8').checked; // Verifica se o Valete está incluído
+  let totalCardValues = includeJack ? cardValues.length : cardValues.filter(val => val !== 'J').length;
+    
+  // Sempre adiciona 2 Jokers ao total de cartas
+  totalCardValues = (cardValues.length * 6) + 2; // Adiciona os 2 Jokers sempre
+  // Calcula o número de cartas por jogador
+  const cardsPerPlayer = Math.floor(totalCardValues  / numPlayers);
+
+  // Exibe a quantidade de cartas
+  document.getElementById('cardsPerPlayer').textContent = `Cada jogador receberá ${cardsPerPlayer} cartas.`;
+}
 
 // Função para gerar os campos de entrada para os nomes dos jogadores e seleção de imagens
 function generatePlayerInputs() {
@@ -47,6 +82,9 @@ function generatePlayerInputs() {
 
     playerInputsContainer.appendChild(inputContainer);
   }
+
+  // Atualiza o número de cartas a ser distribuído
+  calculateCardsPerPlayer();
 }
 
 // Chama a função para exibir os campos quando a página é carregada
@@ -190,6 +228,7 @@ function showRandomCard(countdownOverlay = null) {
   }, 3000);
 }
 
+
 // Função para simular o disparo do gatilho
 function pullTrigger(playerId) {
   const player = players.find(p => p.id === playerId);
@@ -250,3 +289,6 @@ function restartGame() {
   document.getElementById('game').style.display = 'none';
   generatePlayerInputs(); // Mantém os inputs atualizados com os jogadores existentes
 }
+
+
+

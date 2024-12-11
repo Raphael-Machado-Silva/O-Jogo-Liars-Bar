@@ -6,17 +6,27 @@
   <title>Bar da Mentira - Revolver</title>
   <link rel="stylesheet" href="assets/style.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
 </head>
 <body onload="generatePlayerInputs()">
   <div class="container">
-    <h1>Bar da Mentira <i class="fas fa-gun"></i>
-    </h1>
+    <h1>Bar da Mentira <i class="fas fa-gun"></i></h1>
     <p class="text">Escolha o número de jogadores e clique para começar.</p>
 
     <div id="setup">
       <label for="numPlayers">Número de Jogadores (3-6): </label>
       <input type="number" id="numPlayers" min="3" max="6" value="3" onchange="generatePlayerInputs()">
+
+      <!-- Opção de incluir ou excluir o Valete -->
+      <div class="checkbox-wrapper-8">
+        <label for="cb3-8" class="checkbox-label">Incluir Valete (J):</label>
+        <input class="tgl tgl-skewed" id="cb3-8" type="checkbox" onchange="toggleJack()" checked/>
+        <label class="tgl-btn" data-tg-off="OFF" data-tg-on="ON" for="cb3-8"></label>
+      </div>
+
+      <!-- Exibição do número de cartas a ser distribuído -->
+      <h4 id="cardsPerPlayer"></h4>
+      
+
       <div id="playerInputs"></div>
       <button class="trigger-btn" onclick="startGame()">Iniciar Jogo</button>
     </div>
