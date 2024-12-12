@@ -102,6 +102,7 @@ body {
   .points-label{
     font-size: 22px;
     margin-left: 20px;
+    margin-right: 5px;
   }
 
   .players-points-input {
