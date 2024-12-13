@@ -381,3 +381,120 @@ h4{
   .checkbox-wrapper-8 .tgl-skewed:checked + .tgl-btn:active:after {
     left: 10%;
   }
+
+
+  .question-icon {
+    font-size: 24px;
+    cursor: pointer;
+    background-color: #E63946;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    padding: 5px;
+    top: 20px;
+    right: 20px;
+    box-shadow: 0 0px 2px white;
+  }
+
+  .question-icon i{
+    font-size: 28px;
+  }
+
+  .modal-content {
+    background: white;
+    color: black;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-height: 80%; /* Respeita o espaço disponível na tela */
+    max-width: 500px;
+    position: relative;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+  }
+  
+  /* Estilo extra para o modal em relação ao body */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Adiciona rolagem se necessário no modal principal */
+    z-index: 10;
+  }
+  
+  .title-rules{
+    text-align: center;
+    text-shadow: 2px 0px 1px black;
+  }
+
+  .modal-content h2 {
+    margin-top: 0;
+  }
+
+  .modal-content h3{
+    margin-bottom: 0px;
+    margin-top: 30px;
+    text-shadow: 1px 0px 1px black;
+  }
+
+  .modal-content P{
+    color: black;
+    text-indent: 20px;
+  }
+
+  .modal-content .copas{
+    text-align: center;
+  }
+
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 48px;
+    cursor: pointer;
+    color: #888;
+  }
+
+  .close-btn:hover {
+    color: #E63946;
+  }
+
+ /* Estiliza a barra de rolagem do modal-content */
+.modal-content::-webkit-scrollbar {
+  width: 12px; /* Largura da barra de rolagem */
+  height: 10px; /* Altura da barra de rolagem horizontal */
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Cor de fundo da trilha da barra de rolagem */
+  border-radius: 10px; /* Bordas arredondadas para a trilha */
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #888; /* Cor da parte da barra que você arrasta */
+  border-radius: 10px; /* Bordas arredondadas para a parte do thumb */
+  border: 2px solid #f1f1f1; /* Borda entre a trilha e a parte arrastável */
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Cor da parte arrastável ao passar o mouse */
+}
+
+.modal-content::-webkit-scrollbar-button {
+  display: none; /* Oculta os botões de rolagem */
+}

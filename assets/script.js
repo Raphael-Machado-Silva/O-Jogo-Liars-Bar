@@ -1,5 +1,29 @@
 let players = [];
 
+//REGRAS
+    // Seleciona elementos
+    const questionIcon = document.querySelector('.question-icon');
+    const modal = document.getElementById('rulesModal');
+    const closeModal = document.getElementById('closeModal');
+
+    // Abre o modal ao clicar no ícone de interrogação
+    questionIcon.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+
+    // Fecha o modal ao clicar no botão de fechar
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Fecha o modal ao clicar fora do conteúdo
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    })
+//FIM REGRAS
+
 // Lista de nomes de imagens que estão na pasta "img"
 const imageNames = ['porco', 'touro', 'gato', 'cachorro', 'leão', 'pato'];
 

@@ -10,8 +10,76 @@
 </head>
 <body onload="generatePlayerInputs()">
   <div class="container">
-    <h1>Bar da Mentira <i class="fas fa-gun"></i></h1>
+    <h1>Bar da Mentira <i class="fas fa-gun"></i> </h1>
+    <div class="question-icon">
+      <i class="fa-solid fa-question"></i>
+    </div>
     <p class="text">Escolha o número de jogadores e clique para começar.</p>
+
+    <!-- REGRAS -->
+       <!-- Modal para as regras -->
+  <div class="modal" id="rulesModal">
+    <div class="modal-content">
+      <button class="close-btn" id="closeModal">&times;</button>
+      <h1 class="title-rules">Regras do Jogo: Liars Bar</h1>
+      <p>
+        O jogo Liars Bar é um jogo de blefe e coragem, onde os jogadores precisam descartar cartas estratégicas e provar que não estão mentindo, sob o risco de ter que "atirar em si mesmos" caso sejam pegos blefando.
+      </p>
+    
+      <h3>Configuração:</h3>
+      <ul>
+        <li>Cada jogador recebe um baralho com um conjunto igual de cartas.</li>
+        <li>No início de cada rodada, uma carta é sorteada na mesa para determinar o valor-alvo (por exemplo: "K").</li>
+        <li>Cada jogador possui um revólver fictício, com uma única bala verdadeira.</li>
+      </ul>
+    
+      <h3>Regras do Jogo:</h3>
+      <ol>
+        <li>No início de cada rodada, uma carta alvo (exemplo: "K") é definida como o valor que todos os jogadores devem descartar.</li>
+        <li>Os jogadores, em ordem, descartam de 1 a 3 cartas viradas para baixo, anunciando quantas cartas e o valor (exemplo: "Dois Ks").</li>
+        <li>O próximo jogador pode:</li>
+        <ul>
+          <li><strong>Aceitar:</strong> A jogada segue para o próximo jogador.</li>
+          <li><strong>Duvidar:</strong> As cartas do jogador anterior são reveladas.</li>
+        </ul>
+        <li>Se as cartas reveladas forem verdadeiras (correspondem ao que foi anunciado):</li>
+        <ul>
+          <li>O jogador que duvidou deve girar o tambor do revólver e "atirar" em si mesmo.</li>
+        </ul>
+        <li>Se as cartas reveladas forem falsas (não correspondem ao que foi anunciado):</li>
+        <ul>
+          <li>O jogador que mentiu deve girar o tambor do revólver e "atirar" em si mesmo.</li>
+        </ul>
+        <li>Se um jogador ficar sem cartas na mão, ele pode "bater" na mesa, declarando sua vitória parcial:</li>
+        <ul>
+          <li>O próximo jogador pode escolher "bater" também (caso não tenha cartas) ou desafiar o jogador anterior.</li>
+          <li>Se todos os jogadores optarem por "bater", o último jogador é obrigado a desafiar um dos anteriores.</li>
+        </ul>
+        <li>Após qualquer jogador atirar com o revólver (como consequência de um desafio):</li>
+        <ul>
+          <li>Uma nova carta alvo será sorteada na mesa.</li>
+          <li>As cartas serão redistribuídas igualmente entre os jogadores restantes.</li>
+        </ul>
+        <li>O jogo continua até restar apenas um jogador não eliminado.</li>
+      </ol>
+      <h4 class="copas">Obs: Em cada rodada, uma carta vermelha de COPAS pode causar um tiro em todos os jogadores caso seja jogada como verdade e o jogador duvide dela.</h4>
+
+    
+      <h3>Condições de Vitória:</h3>
+      <ul>
+        <li>O último jogador restante é declarado o vencedor.</li>
+        <li>Se todos forem eliminados exceto um, este ganha o jogo.</li>
+      </ul>
+    
+      <h3>Dicas:</h3>
+      <ul>
+        <li>Seja convincente ao blefar e observe o comportamento dos outros jogadores.</li>
+        <li>Preste atenção às probabilidades: quantas cartas do valor-alvo ainda podem estar em jogo?</li>
+        <li>Use as dúvidas estrategicamente para pressionar jogadores que parecem estar blefando.</li>
+      </ul>
+    </div>
+  </div>
+
 
     <div id="setup">
       <div class="jogadores_qnt">
